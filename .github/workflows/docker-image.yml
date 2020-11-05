@@ -26,7 +26,8 @@ jobs:
         context: docker/.
         file: docker/Dockerfile
         push: true
-  
+        tags: latest
+        
   makeiso:
      runs-on: ubuntu-latest
      needs: build
