@@ -27,6 +27,8 @@ jobs:
         context: docker/.
         file: docker/Dockerfile
         push: true
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
         tags: docker.pkg.github.com/baydakov-tn/vyos-build/vyos-build:latest
         
   makeiso:
