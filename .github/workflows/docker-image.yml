@@ -18,10 +18,14 @@ jobs:
     - name: Build the Docker image
       uses: docker/build-push-action@v2
       with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: baydakov-tn/vyos-build
+        tag_with_ref: true 
         context: docker/.
         file: docker/Dockerfile
         push: true
-        tags: docker.pkg.github.com/baydakov-tn/vyos-build:latest
   
   makeiso:
      runs-on: ubuntu-latest
