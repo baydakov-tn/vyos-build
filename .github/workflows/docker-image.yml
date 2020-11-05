@@ -21,13 +21,14 @@ jobs:
         context: docker/.
         file: docker/Dockerfile
         load: true
-        tags: vyos-build:latest
+        push: true
+        tags: docker.pkg.github.com/baydakov-tn/vyos-build:latest
   
   makeiso:
      runs-on: ubuntu-latest
      needs: build
      container: 
-       image: vyos-build:latest
+       image: docker.pkg.github.com/baydakov-tn/vyos-build:latest
        volumes: 
          - ${PWD}:/vyos
        options: --workdir "/vyos" --privileged
