@@ -20,7 +20,7 @@ jobs:
      runs-on: ubuntu-latest
      needs: build
      container: 
-       image: vyos-build:$(date +%s)
+       image: vyos-build
        volumes: 
          - ${PWD}:/vyos
        options: --workdir "/vyos" --privileged
