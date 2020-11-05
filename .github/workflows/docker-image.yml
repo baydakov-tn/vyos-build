@@ -17,6 +17,13 @@ jobs:
       run: docker build docker/. --file docker/Dockerfile --tag vyos-build:$(date +%s)
   
   makeiso:
-     run-on: ubuntu-latest
+     runs-on: ubuntu-latest
+     container: 
+       image: vyos-build:$(date +%s)
+       volumes: 
+         - ${PWD}:/vyos
+       options: --workdir "/vyos" --privileged
      steps:
-       - docker run --name vyos-builder --privileged -v ${PWD}:/vyos -w="/vyos" vyos-builder sh -c "./configure && make iso"
+       - run: ./configure
+       - run: sudo make iso
+         
